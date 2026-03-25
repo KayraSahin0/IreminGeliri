@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Günlük Bütçe Takipçisi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/igLogo.png">
+    <link rel="apple-touch-icon" href="images/igLogo.png">
+</head>
+<body>
+    <div class="container">
+        <h1>İremin Geliri</h1>
+
+        <div id="setup-screen" class="screen">
+            <p>Aylık bütçenizi girin. Sonraki ayın ilk gününe kadar olan süre hesaplanıp günlük harcama limitiniz oluşturulacaktır.</p>
+            <div class="input-group">
+                <input type="number" id="initial-budget" placeholder="Örn: 10000" />
+                <span class="currency">₺</span>
+            </div>
+            <button id="start-btn" class="btn primary-btn">Hesapla ve Başla</button>
+        </div>
+
+        <div id="tracker-screen" class="screen">
+            <div class="balance-card">
+                <h2>Bugün Harcanabilir Bakiye</h2>
+                <h1 id="daily-balance" class="balance-amount">0.00 ₺</h1>
+                <p class="subtitle">Taban Günlük Limit: <span id="base-limit">0</span> ₺</p>
+            </div>
+
+            <div class="actions">
+                <h3>Hızlı Harcama Ekle</h3>
+                <div class="quick-buttons">
+                    <button class="btn quick-btn" onclick="addExpense(50)">50 ₺</button>
+                    <button class="btn quick-btn" onclick="addExpense(100)">100 ₺</button>
+                    <button class="btn quick-btn" onclick="addExpense(200)">200 ₺</button>
+                    <button class="btn quick-btn" onclick="addExpense(500)">500 ₺</button>
+                </div>
+
+                <h3>Özel Tutar Ekle</h3>
+                <div class="custom-expense">
+                    <input type="number" id="custom-amount" placeholder="Tutar girin" />
+                    <button class="btn secondary-btn" onclick="addCustomExpense()">Ekle</button>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-box">
+                    <span>Toplam Kalan</span>
+                    <strong id="total-budget-left">0 ₺</strong>
+                </div>
+                <div class="info-box">
+                    <span>Kalan Gün</span>
+                    <strong id="days-left">0</strong>
+                </div>
+            </div>
+
+            <button class="btn ghost-btn" onclick="simulateNextDay()" style="margin-top: 25px;">(Test) Sonraki Güne Geç</button>
+            <button class="btn danger-btn" onclick="resetApp()" style="margin-top: 10px;">Yeni Ay / Sıfırla</button>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
